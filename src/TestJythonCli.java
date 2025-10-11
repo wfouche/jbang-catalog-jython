@@ -21,11 +21,9 @@ import org.junit.platform.console.ConsoleLauncher;
  */
 public class TestJythonCli {
 
-    static final String[] ARGS_DEBUG_FOO =
-            {"--cli-debug", "foo.py", "bar", "baz"};
-    static final String[] ARGS_FOO =
-            {"--version", "foo.py", "bar.py", "baz"};
-    static final String[] ARGS_NONE = {"--cli-debug"};
+    static final String[] ARGS_DEBUG_FOO = { "--cli-debug", "foo.py", "bar", "baz" };
+    static final String[] ARGS_FOO = { "--version", "foo.py", "bar.py", "baz" };
+    static final String[] ARGS_NONE = { "--cli-debug" };
 
     /** The {@code --cli-debug} flag is spotted */
     @Test
@@ -59,8 +57,7 @@ public class TestJythonCli {
     @Test
     @Disabled("readJBangBlock does not throw on an unterminated block")
     void testUnterminated() throws IOException {
-        String script = 
-                """
+        String script = """
                 # /// jbang
                 # requires-jython = "2.7.2"
                 # requires-java = "17"
@@ -81,13 +78,13 @@ public class TestJythonCli {
         JythonCli cli = new JythonCli();
         processScript(cli,
                 """
-                # /// script
-                # requires-python = ">=3.11"
-                # /// jbang
-                # requires-jython = "2.7.2"
-                # requires-java = "8"
-                # ///
-                """);
+                        # /// script
+                        # requires-python = ">=3.11"
+                        # /// jbang
+                        # requires-jython = "2.7.2"
+                        # requires-java = "8"
+                        # ///
+                        """);
         assertTrue(cli.tomlText.isEmpty(), "Check TOML text is empty");
         assertNull(cli.tpr, "Check TOML parse not done");
     }
@@ -101,8 +98,7 @@ public class TestJythonCli {
     @Test
     @Disabled("interpretJBangBlock treats '/// script' as valid terminator")
     void testCollision() throws IOException {
-        String script =
-                """
+        String script = """
                 # /// jbang
                 # requires-jython = "2.7.2"
                 # requires-java = "8"
@@ -120,8 +116,7 @@ public class TestJythonCli {
     @Test
     @Disabled("readJBangBlock does not throw on a second jbang block")
     void testTwoBlocks() throws IOException {
-        String script =
-                """
+        String script = """
                 # /// jbang
                 # requires-jython = "2.7.2"
                 # requires-java = "8"
@@ -143,8 +138,7 @@ public class TestJythonCli {
     /** Invalid TOML is an error. */
     @Test
     void testInvalidTOML() throws IOException {
-        String script =
-                """
+        String script = """
                 # /// jbang
                 # requires-jython = "2.7.4"
                 # requires-java = "21"

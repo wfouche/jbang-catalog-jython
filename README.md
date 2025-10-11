@@ -259,10 +259,10 @@ On Linux or MacOS the JythonCli.java script can be run directly for testing purp
 
 ## Java Source File Formatting
 
-Use the `google-java-format` to format the `JythonCli.java` and `TestJythonCli.java` programs.
+Use command `jython-java-fmt` to format the `JythonCli.java` and `TestJythonCli.java` source files.
 
 ```
-jbang run com.google.googlejavaformat:google-java-format:1.29.0 --aosp -r *.java
+jbang run jython-java-fmt
 ```
 
 ## Articles about Jython and JBang
