@@ -75,16 +75,16 @@ public class TestJythonCli {
     @Test
     @Disabled("readJBangBlock treats '/// jbang' inside another block as valid start")
     void testGobbledBlock() throws IOException {
+        String script = """
+                # /// script
+                # requires-python = ">=3.11"
+                # /// jbang
+                # requires-jython = "2.7.2"
+                # requires-java = "8"
+                # ///
+                """;
         JythonCli cli = new JythonCli();
-        processScript(cli,
-                """
-                        # /// script
-                        # requires-python = ">=3.11"
-                        # /// jbang
-                        # requires-jython = "2.7.2"
-                        # requires-java = "8"
-                        # ///
-                        """);
+        processScript(cli, script);
         assertTrue(cli.tomlText.isEmpty(), "Check TOML text is empty");
         assertNull(cli.tpr, "Check TOML parse not done");
     }
