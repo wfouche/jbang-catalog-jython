@@ -210,21 +210,17 @@ public class JythonCli {
         cmd.add("jbang" + (windows ? ".cmd" : ""));
         cmd.add("run");
 
-        cmd.add("--java");
-        cmd.add(javaVersion);
+        cmd.add("--java=" + javaVersion);
 
         for (String ropt : ropts) {
-            cmd.add("--runtime-option");
-            cmd.add(ropt);
+            cmd.add("-R=" + ropt);
         }
 
         for (String dep : deps) {
-            cmd.add("--deps");
-            cmd.add(dep);
+            cmd.add("--deps=" + dep);
         }
 
-        cmd.add("--main");
-        cmd.add("org.python.util.jython");
+        cmd.add("--main=org.python.util.jython");
 
         cmd.add("org.python:jython-slim:" + jythonVersion);
 
