@@ -7,7 +7,7 @@
           "jbang.app.version": "2.7.4"
       }
     },
-    "jython-cli-next": {
+    "jython-cli-dev": {
       "script-ref": "JythonCli.java",
       "description": "Run Jython 2.7.5b1",
       "properties": {
