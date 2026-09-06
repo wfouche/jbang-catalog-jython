@@ -79,9 +79,9 @@ public class JythonCli {
      * Downloads XML from the provided URL and returns the text content of the <latest> tag.
      *
      * @param urlString The HTTP/HTTPS endpoint returning XML
-     * @return The value inside <latest>, or null if not found
+     * @return The value inside the specified tag, or null if not found
      */
-    public static String getLatestVersionFromUrl(String urlString) throws Exception {
+    public static String getTagVersionFromUrl(String tagName, String urlString) throws Exception {
         URL url = new URL(urlString);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -128,9 +128,9 @@ public class JythonCli {
         // Set Jython version to jbang.app.version property if set, otherwise use default
         String version = System.getProperty("jbang.app.version");
         if (version != null) {
-            if (version.equals("latest")) {
+            if (version.equals("latest") || version.equals("release")) {
                 try {
-                    version = getLatestVersionFromUrl("https://repo1.maven.org/maven2/org/python/jython-slim/maven-metadata.xml");
+                    version = getTagVersionFromUrl(version, "https://repo1.maven.org/maven2/org/python/jython-slim/maven-metadata.xml");
                     if (version == null) {
                         System.err.println("jython-cli: error, could not determine latest Jython version from Maven metadata");
                         System.exit(1);

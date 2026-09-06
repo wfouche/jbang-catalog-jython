@@ -13,6 +13,13 @@
       "properties": {
         "jbang.app.version": "latest"
       }
+    },
+    "jython-cli-release": {
+      "script-ref": "JythonCli.java",
+      "description": "Run Jython <release>>",
+      "properties": {
+        "jbang.app.version": "release"
+      }
     }
   }
 }
