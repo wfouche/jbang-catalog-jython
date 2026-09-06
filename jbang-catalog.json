@@ -1,20 +1,20 @@
 {
   "aliases": {
-    "jython-cli": {
+    "jython": {
       "script-ref": "JythonCli.java",
       "description": "Run Jython 2.7",
       "properties": {
           "jbang.app.version": "2.7.4"
       }
     },
-    "jython-cli-latest": {
+    "jython-latest": {
       "script-ref": "JythonCli.java",
       "description": "Run Jython <latest>",
       "properties": {
         "jbang.app.version": "LATEST"
       }
     },
-    "jython-cli-release": {
+    "jython-release": {
       "script-ref": "JythonCli.java",
       "description": "Run Jython <release>",
       "properties": {
