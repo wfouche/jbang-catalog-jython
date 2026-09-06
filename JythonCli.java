@@ -106,7 +106,7 @@ public class JythonCli {
             Document doc = factory.newDocumentBuilder().parse(inputStream);
             doc.getDocumentElement().normalize();
 
-            NodeList nodeList = doc.getElementsByTagName("latest");
+            NodeList nodeList = doc.getElementsByTagName(tagName);
             if (nodeList.getLength() > 0) {
                 return nodeList.item(0).getTextContent();
             }
