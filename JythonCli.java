@@ -3,17 +3,11 @@
 //DEPS org.tomlj:tomlj:1.1.1
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.*;
 
 import org.tomlj.Toml;
 import org.tomlj.TomlParseResult;
 import org.tomlj.TomlParseError;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilderFactory;
 
 public class JythonCli {
 
