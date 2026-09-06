@@ -7,11 +7,11 @@
           "jbang.app.version": "2.7.4"
       }
     },
-    "jython-cli-dev": {
+    "jython-cli-latest": {
       "script-ref": "JythonCli.java",
-      "description": "Run Jython 2.7.5b1",
+      "description": "Run Jython <latest>>",
       "properties": {
-        "jbang.app.version": "2.7.5b1"
+        "jbang.app.version": "latest"
       }
     }
   }
