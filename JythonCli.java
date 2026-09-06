@@ -76,48 +76,6 @@ public class JythonCli {
     }
 
     /**
-     * Downloads XML from the provided URL and returns the text content of the <latest> tag.
-     *
-     * @param urlString The HTTP/HTTPS endpoint returning XML
-     * @return The value inside the specified tag, or null if not found
-     */
-    public static String getTagVersionFromUrl(String tagName, String urlString) throws Exception {
-        URL url = new URL(urlString);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        // Standard HTTP configuration
-        connection.setRequestMethod("GET");
-        connection.setRequestProperty("Accept", "application/xml");
-        connection.setConnectTimeout(5000); // 5 seconds timeout
-        connection.setReadTimeout(5000);
-
-        int responseCode = connection.getResponseCode();
-        if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new RuntimeException("HTTP GET failed with response code: " + responseCode);
-        }
-
-        // Stream the XML response directly into the DOM parser
-        try (InputStream inputStream = connection.getInputStream()) {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
-            // XXE Security setting
-            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-
-            Document doc = factory.newDocumentBuilder().parse(inputStream);
-            doc.getDocumentElement().normalize();
-
-            NodeList nodeList = doc.getElementsByTagName(tagName);
-            if (nodeList.getLength() > 0) {
-                return nodeList.item(0).getTextContent();
-            }
-        } finally {
-            connection.disconnect();
-        }
-
-        return null;
-    }
-
-    /**
      * Process the command line arguments, giving special tratment to the
      * {@code --cli-debug} option and the (optional) Jython script specified.
      *
@@ -128,18 +86,6 @@ public class JythonCli {
         // Set Jython version to jbang.app.version property if set, otherwise use default
         String version = System.getProperty("jbang.app.version");
         if (version != null) {
-            if (version.equals("latest") || version.equals("release")) {
-                try {
-                    version = getTagVersionFromUrl(version, "https://repo1.maven.org/maven2/org/python/jython-slim/maven-metadata.xml");
-                    if (version == null) {
-                        System.err.println("jython-cli: error, could not determine latest Jython version from Maven metadata");
-                        System.exit(1);
-                    }
-                } catch (Exception e) {
-                    System.err.println("jython-cli: error, could not determine latest Jython version from Maven metadata: " + e.getMessage());
-                    System.exit(1);
-                }
-            }
             jythonVersion = version;
         }
 
