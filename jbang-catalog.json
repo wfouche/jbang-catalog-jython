@@ -9,14 +9,14 @@
     },
     "jython-cli-latest": {
       "script-ref": "JythonCli.java",
-      "description": "Run Jython <latest>>",
+      "description": "Run Jython <latest>",
       "properties": {
         "jbang.app.version": "LATEST"
       }
     },
     "jython-cli-release": {
       "script-ref": "JythonCli.java",
-      "description": "Run Jython <release>>",
+      "description": "Run Jython <release>",
       "properties": {
         "jbang.app.version": "RELEASE"
       }
